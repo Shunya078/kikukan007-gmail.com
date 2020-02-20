@@ -22,9 +22,11 @@ before do
   config.cloud_name = ENV['CLOUD_NAME']
   config.api_key = ENV['CLOUDINARY_API_KEY']
   config.api_secret = ENV['CLOUDINARY_API_SECRET']
+  end
 end
 
 get '/' do
+  @users = User.all
   @musics = Music.all
   erb :index
 end
@@ -84,7 +86,9 @@ post '/search' do
   res = Net::HTTP.get_response(uri)
   returned_json = JSON.parse(res.body)
   @results = returned_json["results"]
-
+  if @results == ''
+    @results = '検索結果がありません'
+  end
 end
 
 post '/new' do
@@ -97,7 +101,7 @@ post '/new' do
     sample: params[:sample_url],
     user_id: current_user.id
   )
-  redirect '/home'
+  redirect '/home/:id'
 end
 
 get '/home/:id' do
@@ -113,10 +117,10 @@ post '/edit/:id' do
   music = Music.find(params[:id])
   music.comment = params[:comment]
   music.save
-  redirect '/home'
+  redirect '/home/:id'
 end
 
-post '/delete/:id' do
+get '/delete/:id' do
   Music.find(params[:id]).destroy
   redirect '/home/:id'
 end
