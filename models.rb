@@ -8,9 +8,9 @@ end
 class User < ActiveRecord::Base
   has_secure_password
   validates :name,
-    presence :true
+    presence: true
   validates :password,
-    length: {in : 5..10 }
+    length: {in: 5..10 }
   has_many :musics
 end
 

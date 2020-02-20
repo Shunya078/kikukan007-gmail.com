@@ -1,0 +1,11 @@
+<div>
+  <header>
+    <h1>検索フォーム</h1>
+    <form action="search" method="post">
+      <input name="keyword" type="text" placeholder="アーティスト名">
+      <input type="submit" name="kensaku" value="検索">
+    </form>
+    <h2>検索結果</h2>
+    <%= @results %>
+  </header>
+</div>

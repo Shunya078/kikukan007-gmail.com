@@ -1,9 +1,26 @@
-<!DOCTYPE html>
-<html lang="ja">
-<head>
-	<meta charset="UTF-8">
-	<title>タイトル</title>
-</head>
-<body>
-</body>
-</html>
+<div>
+	<header>
+		<h1>MUSIC SNS!!!</h1>
+		<% if !current_user.nil? %>
+			<form action="/signin" method="post">
+				<input class="form-control input-lg" name="name" placeholder="ユーザー名">
+        <input class="form-control input-lg" name="password" type="password" placeholder="パスワード">
+        <input class="form-control col-lg-4" type="submit" value="ログイン">
+		<% end %>
+	</header>
+	<section>
+		<h2>最新の投稿</h2>
+		<ul>
+			<% @users.each do |user| %>
+			<% @musics.each do |music| %>
+			<li>
+				<p><img src="<%= music.img %>"></p>
+				<p>artist:<%= music.artist %></p>
+				<p>コメント:<%= music.comment %></p>
+				<p>投稿者:<%= user.name %></p>
+			</li>
+			<% end %>
+			<% end %>
+		</ul>
+	</section>
+</div>
