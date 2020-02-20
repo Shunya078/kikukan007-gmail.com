@@ -62,6 +62,11 @@ post '/signin' do
   end
 end
 
+get '/signout' do
+  session[:user] = nil
+  redirect '/'
+end
+
 get '/search' do
   @musics = Music.all
   erb :search
