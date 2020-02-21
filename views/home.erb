@@ -1,17 +1,17 @@
 <div>
   <header><%= current_user.name%>の投稿</header>
-    <ul>
-        <% if !@musics == [] %>
+    <ul style="list-style: none;">
+        <% if !@musics.empty? %>
           <li>
             <% @musics.each do |music| %>
               <p><img src="<%= music.img %>"></p>
               <p><%= music.artist %></p>
               <p><%= music.title %></p>
               <p><%= music.album %></p>
-              <p><a href="<%= music.sample %>">サンプル</p>
+              <p><a href="<%= music.sample %>">サンプル</a></p>
               <p>コメント：<%= music.comment %></p>
-              <a href="/delete/:id">削除</a>
-              <a href="/edit/:id">編集</a>
+              <a href="/delete/:id">削除</a><br>
+              <a href="/edit/:id">編集</a><br>
             <% end %>
           </li>
         <% else %>
