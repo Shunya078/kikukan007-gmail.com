@@ -6,6 +6,26 @@
       <input type="submit" name="kensaku" value="検索">
     </form>
     <h2>検索結果</h2>
-    <%= @results %>
+    <div class="container-fluid">
+      <% if !@musics.empty? %>
+        <div class="row">
+          <% @musics.each do |music| %>
+            <div class="col-lg-3 col-xs-3 col-sm-3 col-md-3">
+              <div class="card">
+                <img src="<%= music["artworkUrl100"] %>" class="card-img-top">
+                <div class="card-body">
+                  <p><%= music["artistName"] %></p>
+                  <p><%= music["collectionName"] %></p>
+                  <p><%= music["trackName"] %></p>
+                  <a href="<%= music["previewUrl"] %>">サンプル</a>
+                </div>
+              </div>
+            </div>
+          <% end %>
+        </div>
+      <% else %>
+        検索結果がありません
+      <% end %>
+    </div>
   </header>
 </div>

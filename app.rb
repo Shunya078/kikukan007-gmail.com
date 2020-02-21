@@ -25,6 +25,36 @@ before do
   end
 end
 
+before '/search' do
+    if current_user.nil?
+        redirect '/'
+    end
+end
+
+before '/home' do
+    if current_user.nil?
+        redirect '/'
+    end
+end
+
+before '/new' do
+    if current_user.nil?
+        redirect '/'
+    end
+end
+
+before '/edit/:id' do
+    if current_user.nil?
+        redirect '/'
+    end
+end
+
+before '/delete/:id' do
+    if current_user.nil?
+        redirect '/'
+    end
+end
+
 get '/' do
   @users = User.all
   @musics = Music.all
@@ -45,7 +75,7 @@ post '/signup' do
   end
 
   @user = User.create(name:params[:name], password:params[:password],
-    password_confirmation:params[:password_confirmation], img: img)
+    password_confirmation:params[:password_confirmation], img:img)
   if @user.persisted?
     session[:user] = @user.id
     redirect '/search'
@@ -56,7 +86,7 @@ end
 
 post '/signin' do
   user = User.find_by(name: params[:name])
-  if user && User.authenticate(params[:password])
+  if user && user.authenticate(params[:password])
     session[:user] = user.id
     redirect '/search'
   else
@@ -70,7 +100,6 @@ get '/signout' do
 end
 
 get '/search' do
-  @musics = Music.all
   erb :search
 end
 
@@ -85,10 +114,13 @@ post '/search' do
   })
   res = Net::HTTP.get_response(uri)
   returned_json = JSON.parse(res.body)
-  @results = returned_json["results"]
-  if @results == ''
-    @results = '検索結果がありません'
-  end
+  @musics = returned_json["results"]
+  p @musics
+  # @results = returned_json["results"]
+  # if @results == ''
+  #   @results = '検索結果がありません'
+  # end
+  redirect '/search'
 end
 
 post '/new' do
@@ -101,11 +133,13 @@ post '/new' do
     sample: params[:sample_url],
     user_id: current_user.id
   )
-  redirect '/home/:id'
+  redirect '/home'
 end
 
-get '/home/:id' do
+get '/home' do
   @musics = current_user.musics
+  p current_user
+  p @musics
   erb :home
 end
 
@@ -117,10 +151,10 @@ post '/edit/:id' do
   music = Music.find(params[:id])
   music.comment = params[:comment]
   music.save
-  redirect '/home/:id'
+  redirect '/home'
 end
 
 get '/delete/:id' do
   Music.find(params[:id]).destroy
-  redirect '/home/:id'
+  redirect '/home'
 end

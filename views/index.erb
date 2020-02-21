@@ -1,11 +1,11 @@
 <div>
 	<header>
 		<h1>MUSIC SNS!!!</h1>
-		<% if !current_user.nil? %>
+		<% if current_user.nil? %>
 			<form action="/signin" method="post">
-				<input class="form-control input-lg" name="name" placeholder="ユーザー名">
-        <input class="form-control input-lg" name="password" type="password" placeholder="パスワード">
-        <input class="form-control col-lg-4" type="submit" value="ログイン">
+				<input name="name" placeholder="ユーザー名">
+        <input name="password" type="password" placeholder="パスワード">
+        <input type="submit" value="ログイン">
 		<% end %>
 	</header>
 	<section>
