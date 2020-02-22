@@ -1,11 +1,40 @@
 <div>
   <header>
     <h1>検索フォーム</h1>
-    <form action="search" method="post">
+    <form action="/search" method="get">
       <input name="keyword" type="text" placeholder="アーティスト名">
       <input type="submit" name="kensaku" value="検索">
     </form>
     <h2>検索結果</h2>
-    <%= @results %>
+    <div class="container-fluid">
+      <% if !@musics.empty? %>
+        <div class="row">
+          <% @musics.each do |music| %>
+            <div class="col-lg-3 col-xs-3 col-sm-3 col-md-3">
+              <div class="card">
+                <img src="<%= music["artworkUrl100"] %>" class="card-img-top">
+                <div class="card-body">
+                  <p><%= music["artistName"] %></p>
+                  <p><%= music["collectionName"] %></p>
+                  <p><%= music["trackName"] %></p>
+                  <a href="<%= music["previewUrl"] %>">サンプル</a><br>
+                  <form action="/new" method="post">
+                    <input type="hidden" value="<%= music["artworkUrl100"] %>" name="img">
+                    <input type="hidden" value="<%= music["artistName"] %>" name="artist">
+                    <input type="hidden" value="<%= music["collectionName"] %>" name="title">
+                    <input type="hidden" value="<%= music["trackName"] %>" name="album">
+                    <input type="hidden" value="<%= music["previewUrl"] %>" name="sample">
+                    <input name="comment" type="text" placeholder="コメント">
+                    <input type="submit" name="toukou" value="投稿">
+                  </form>
+                </div>
+              </div>
+            </div>
+          <% end %>
+        </div>
+      <% else %>
+        検索結果がありません
+      <% end %>
+    </div>
   </header>
 </div>

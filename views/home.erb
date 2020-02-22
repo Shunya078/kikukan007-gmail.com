@@ -1,25 +1,21 @@
 <div>
   <header><%= current_user.name%>の投稿</header>
-    <ul>
-        <li>
-          <a>
-            <% if !@musics.nil? %>
-            <li>
-              <% @musics.each do |music| %>
-                <p><img src="<%= music.img %>"></p>
-                <p><%= music.artist %></p>
-                <p><%= music.title %></p>
-                <p><%= music.album %></p>
-                <p><%= music.sample %></p>
-                <p>コメント：<%= music.comment %></p>
-                <a href="/delete/:id">削除</a>
-                <a href="/edit/:id">編集</a>
-              <% end %>
-            </li>
-            <% else %>
-              <li>投稿がありません</li>
+    <ul style="list-style: none;">
+        <% if !@musics.empty? %>
+          <li>
+            <% @musics.each do |music| %>
+              <p><img src="<%= music.img %>"></p>
+              <p><%= music.artist %></p>
+              <p><%= music.title %></p>
+              <p><%= music.album %></p>
+              <p><a href="<%= music.sample %>">サンプル</a></p>
+              <p>コメント：<%= music.comment %></p>
+              <a href="/delete/<%= music.id %>">削除</a><br>
+              <a href="/edit/<%= music.id %>">編集</a><br>
             <% end %>
-          </a>
-        </li>
+          </li>
+        <% else %>
+          <li>投稿がありません</li>
+        <% end %>
       </ul>
 </div>
