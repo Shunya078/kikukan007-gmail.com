@@ -1,21 +1,26 @@
-<div>
-  <header><%= current_user.name%>の投稿</header>
-    <ul style="list-style: none;">
+<div align="center">
+  <h1><%= current_user.name%>の投稿</h1>
+      <div class="container-fluid">
+      <ul>
         <% if !@musics.empty? %>
-          <li>
             <% @musics.each do |music| %>
-              <p><img src="<%= music.img %>"></p>
-              <p><%= music.artist %></p>
-              <p><%= music.title %></p>
-              <p><%= music.album %></p>
-              <p><a href="<%= music.sample %>">サンプル</a></p>
-              <p>コメント：<%= music.comment %></p>
-              <a href="/delete/<%= music.id %>">削除</a><br>
-              <a href="/edit/<%= music.id %>">編集</a><br>
+                <div class="card">
+                <li><img src="<%= music.img %>"  class="card-img-top"></li>
+                  <div class="card-body">
+                  <li><%= music.artist %></li>
+                  <li><%= music.title %></li>
+                  <li><%= music.album %></li>
+                  <li><a href="<%= music.sample %>">サンプル</a></li>
+                  <li>コメント：<%= music.comment %></li>
+                  <a href="/delete/<%= music.id %>">削除</a><br>
+                  <a href="/edit/<%= music.id %>">編集</a><br>
+                  </div>
+                </div>
             <% end %>
-          </li>
         <% else %>
-          <li>投稿がありません</li>
+          投稿がありません
         <% end %>
-      </ul>
+        </ul>
+      </div>
+    </header>
 </div>

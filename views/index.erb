@@ -1,5 +1,5 @@
-<div>
-	<header>
+<div align="center">
+	<header class="first-view center-vertical" background="mike.jpg">
 		<h1>MUSIC SNS!!!</h1>
 		<% if current_user.nil? %>
 			<form action="/signin" method="post">
@@ -8,17 +8,21 @@
         <input type="submit" value="ログイン">
 		<% end %>
 	</header>
-	<section>
+	<section class="center-vertical">
 		<h2>最新の投稿</h2>
-		<ul style="list-style: none;">
+		<div class="container-fluid">
+			<ul class="reverse">
 			<% @musics.each do |music| %>
-			<li>
-				<p><img src="<%= music.img %>"></p>
-				<p>artist:<%= music.artist %></p>
-				<p>コメント:<%= music.comment %></p>
-				<p>投稿者:<%= music.user.name %></p>
-			</li>
+        <div class="card">
+					<li><img src="<%= music.img %>" class="card-img-top"></li>
+					<div class="card-body">
+					<li>artist:<%= music.artist %></li>
+					<li>コメント:<%= music.comment %></li>
+					<li>投稿者:<%= music.user.name %></li>
+					</div>
+				</div>
 			<% end %>
-		</ul>
+			</ul>
+		</div>
 	</section>
 </div>

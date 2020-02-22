@@ -105,7 +105,6 @@ post '/new' do
     sample: params[:sample],
     user_id: current_user.id
   )
-  p current_user.id
   redirect '/home'
 end
 
