@@ -10,16 +10,14 @@
 	</header>
 	<section>
 		<h2>最新の投稿</h2>
-		<ul>
-			<% @users.each do |user| %>
+		<ul style="list-style: none;">
 			<% @musics.each do |music| %>
 			<li>
 				<p><img src="<%= music.img %>"></p>
 				<p>artist:<%= music.artist %></p>
 				<p>コメント:<%= music.comment %></p>
-				<p>投稿者:<%= user.name %></p>
+				<p>投稿者:<%= music.user.name %></p>
 			</li>
-			<% end %>
 			<% end %>
 		</ul>
 	</section>

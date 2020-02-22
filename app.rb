@@ -32,7 +32,6 @@ before ['/search','/home','/new','/edit/:id','/delete:id'] do
 end
 
 get '/' do
-  @users = User.all
   @musics = Music.all
   erb :index
 end
@@ -48,6 +47,8 @@ post '/signup' do
     tempfile = img_file[:tempfile]
     upload = Cloudinary::Uploader.upload(tempfile.path)
     img = upload['url']
+  else
+    img = "https://res.cloudinary.com/dcksv5swp/image/upload/v1549968178/qusyecxamstqbg0lejdz.png"
   end
 
   @user = User.create(name:params[:name], password:params[:password],
@@ -95,8 +96,7 @@ get '/search' do
 end
 
 post '/new' do
-
-  Music.create(
+  current_user.musics.create(
     artist: params[:artist],
     title: params[:title],
     album: params[:album],
@@ -105,17 +105,17 @@ post '/new' do
     sample: params[:sample],
     user_id: current_user.id
   )
+  p current_user.id
   redirect '/home'
 end
 
 get '/home' do
   @musics = current_user.musics
-  p current_user
-  p @musics
   erb :home
 end
 
 get '/edit/:id' do
+  @music = Music.find(params[:id])
   erb :edit
 end
 
@@ -127,6 +127,7 @@ post '/edit/:id' do
 end
 
 get '/delete/:id' do
-  Music.find(params[:id]).destroy
+  music = Music.find(params[:id])
+  music.destroy
   redirect '/home'
 end

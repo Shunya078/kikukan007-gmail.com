@@ -1,9 +1,9 @@
 <div class="container">
-  <form action="/edit/:id" method="post">
+  <form action="/edit/<%= @music.id %>" method="post">
     <div class="controls">
       <div class="form-group">
         <header>コメントの更新</header>
-        <input type="text" name="comment" value="<%= CGI.escapeHTML(@task.title)%><%= music.comment %>" class="form-control input-lg"><br>
+        <input type="text" name="comment" value="<%= CGI.escapeHTML(@music.comment) %><%= @music.comment %>" class="form-control input-lg"><br>
       </div>
       <div class="form-group col-lg-4">
         <input class="form-control col-lg-4" type="submit" value="更新">

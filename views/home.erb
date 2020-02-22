@@ -10,8 +10,8 @@
               <p><%= music.album %></p>
               <p><a href="<%= music.sample %>">サンプル</a></p>
               <p>コメント：<%= music.comment %></p>
-              <a href="/delete/:id">削除</a><br>
-              <a href="/edit/:id">編集</a><br>
+              <a href="/delete/<%= music.id %>">削除</a><br>
+              <a href="/edit/<%= music.id %>">編集</a><br>
             <% end %>
           </li>
         <% else %>
