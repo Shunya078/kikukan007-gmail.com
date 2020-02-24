@@ -18,7 +18,16 @@
 					<div class="card-body">
 					<li>artist:<%= music.artist %></li>
 					<li>コメント:<%= music.comment %></li>
-					<li>投稿者:<%= music.user.name %></li>
+					<li>投稿者:<%= @name %></li>
+					<li>いいねしたユーザー</li>
+					<%# <% Userfavo.where(music_id: music.favorite.true).each do |uf|%>
+						<%# <%= uf.user.img %>
+					<%# <% end %>
+					<li>
+					<% if !current_user.nil? %>
+						<a href='/favo/<%= music.id %>'>いいねする</a>
+					<% end %>
+					</li>
 					</div>
 				</div>
 			<% end %>

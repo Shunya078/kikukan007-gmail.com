@@ -33,6 +33,13 @@ end
 
 get '/' do
   @musics = Music.all
+  @musics.each do |music|
+    Userfavo.where(user_id: music.user_id).each do |uf|
+      @name = uf.user.name
+    end
+  end
+  p @musics
+  p @name
   erb :index
 end
 
@@ -110,6 +117,22 @@ end
 
 get '/home' do
   @musics = current_user.musics
+  @music = Music.all
+  @music.each do |music|
+    Userfavo.where(user_id: music.id).each do |uf|
+      @name = uf.user.name
+    end
+  end
+  @favos = Userfavo.where(user_id: session[:user] , favorite: true)
+  if !@favos.empty?
+    @favos.each do |favo|
+    @favorites = Music.where(id: favo.music_id)
+    @users = User.where(id: favo.user_id)
+    end
+  end
+  p @musics
+  p nil
+  p @users
   erb :home
 end
 
@@ -128,5 +151,12 @@ end
 get '/delete/:id' do
   music = Music.find(params[:id])
   music.destroy
+  redirect '/home'
+end
+
+get '/favo/:id' do
+  userfavo = Userfavo.find(params[:id])
+  userfavo.favorite = !userfavo.favorite
+  userfavo.save
   redirect '/home'
 end

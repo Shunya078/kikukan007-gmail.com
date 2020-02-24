@@ -12,6 +12,10 @@
                   <li><%= music.album %></li>
                   <li><a href="<%= music.sample %>">サンプル</a></li>
                   <li>コメント：<%= music.comment %></li>
+                  <li>いいねしたユーザー</li>
+                  <% @users.each do |user|%>
+                    <li><%= user.name %></li>
+                  <% end %>
                   <a href="/delete/<%= music.id %>">削除</a><br>
                   <a href="/edit/<%= music.id %>">編集</a><br>
                   </div>
@@ -20,7 +24,27 @@
         <% else %>
           投稿がありません
         <% end %>
-        </ul>
+      </ul>
       </div>
-    </header>
+    <h2><%= current_user.name %>のイイねした投稿</h2>
+     <div class="container-fluid">
+      <ul>
+            <% @favorites.each do |music| %>
+                <div class="card">
+                <li><img src="<%= music.img %>"  class="card-img-top"></li>
+                  <div class="card-body">
+                  <li><%= music.artist %></li>
+                  <li><%= music.title %></li>
+                  <li><%= music.album %></li>
+                  <li><a href="<%= music.sample %>">サンプル</a></li>
+                  <li>コメント：<%= music.comment %></li>
+                  <li>いいねしたユーザー</li>
+                  <% @users.each do |user|%>
+                  <li><%= user.name %></li>
+                  <% end %>
+                  </div>
+                </div>
+            <% end %>
+      </ul>
+    </div>
 </div>
