@@ -12,15 +12,16 @@
                   <li><%= music.album %></li>
                   <li><a href="<%= music.sample %>">サンプル</a></li>
                   <li>コメント：<%= music.comment %></li>
-                  <li>いいねしたユーザー</li>
-                  <% @userfavos.each do |userfavo| %>
-                  <% @user = User.where(id: userfavo.user_id) %>
-                    <% if !@user.nil? %>
-                      <% @user.each do |user| %>
-                        <li><%= user.name %></li>
-                      <% end %>
-                    <% end %>
-                  <% end %>
+                  <li>いいねしたユーザー<br>
+                  <% @userfavo_all.each do |uf|%>
+						        <% if uf.music_id == music.id %>
+							        <% if !uf.favorite.nil? %>
+							        <% @name = User.find(uf.favorite.to_i).name%>
+                      <%= @name%>
+							      <% end %>
+						        <% end %>
+					        <% end %>
+                  </li>
                   <a href="/delete/<%= music.id %>">削除</a><br>
                   <a href="/edit/<%= music.id %>">編集</a><br>
                   </div>
@@ -45,11 +46,16 @@
                   <li><%= music.album %></li>
                   <li><a href="<%= music.sample %>">サンプル</a></li>
                   <li>コメント：<%= music.comment %></li>
-                  <li>いいねしたユーザー</li>
-                  <% @user = User.where(id: userfavo.favorite) %>
-                    <% @user.each do |user| %>
-                      <li><%= user.name %></li>
-                    <% end %>
+                  <li>いいねしたユーザー<br>
+                  <% @userfavo_all.each do |uf|%>
+						        <% if uf.music_id == music.id %>
+							        <% if !uf.favorite.nil? %>
+							        <% @name = User.find(uf.favorite.to_i).name%>
+                      <%= @name%>
+							      <% end %>
+						        <% end %>
+					        <% end %>
+                  </li>
                   </div>
                 </div>
               <% end %>

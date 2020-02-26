@@ -106,6 +106,7 @@ post '/new' do
 end
 
 get '/home' do
+  @userfavo_all = Userfavo.all
   @mymusics = Music.where(user_id: current_user.id)
   @userfavos = Userfavo.where(favorite: current_user.id)
   erb :home
