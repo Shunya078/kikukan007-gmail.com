@@ -13,9 +13,12 @@
                   <li><a href="<%= music.sample %>">サンプル</a></li>
                   <li>コメント：<%= music.comment %></li>
                   <li>いいねしたユーザー</li>
-                  <% if !@user.nil? %>
-                    <% @user.each do |user| %>
-                      <li><%= user.name %></li>
+                  <% @userfavos.each do |userfavo| %>
+                  <% @user = User.where(id: userfavo.user_id) %>
+                    <% if !@user.nil? %>
+                      <% @user.each do |user| %>
+                        <li><%= user.name %></li>
+                      <% end %>
                     <% end %>
                   <% end %>
                   <a href="/delete/<%= music.id %>">削除</a><br>
@@ -31,8 +34,9 @@
     <h2><%= current_user.name %>のイイねした投稿</h2>
      <div class="container-fluid">
       <ul>
-        <% @musics.each do |music| %>
-          <% if music.favorite == current_user.id.to_s %>
+        <% @userfavos.each do |userfavo|%>
+          <% @favomusics = Music.where(id: userfavo.music_id) %>
+            <% @favomusics.each do |music|%>
                 <div class="card">
                 <li><img src="<%= music.img %>"  class="card-img-top"></li>
                   <div class="card-body">
@@ -42,15 +46,14 @@
                   <li><a href="<%= music.sample %>">サンプル</a></li>
                   <li>コメント：<%= music.comment %></li>
                   <li>いいねしたユーザー</li>
-                  <% if !@user.nil? %>
+                  <% @user = User.where(id: userfavo.favorite) %>
                     <% @user.each do |user| %>
                       <li><%= user.name %></li>
                     <% end %>
-                  <% end %>
                   </div>
                 </div>
+              <% end %>
             <% end %>
-          <% end %>
       </ul>
     </div>
 </div>

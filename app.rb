@@ -34,7 +34,6 @@ end
 get '/' do
   @userfavo = Userfavo.all
   @musics = Music.all
-  p @musics
   erb :index
 end
 
@@ -107,14 +106,8 @@ post '/new' do
 end
 
 get '/home' do
-  @mymusics = current_user.musics
-  @musics = Music.all
-  @musics.each do |music|
-    if !music.favorite.nil?
-    @user = User.where(id: music.favorite)
-    end
-  end
-  p @musics
+  @mymusics = Music.where(user_id: current_user.id)
+  @userfavos = Userfavo.where(favorite: current_user.id)
   erb :home
 end
 
@@ -137,17 +130,19 @@ get '/delete/:id' do
 end
 
 get '/favo/:id/create' do
-  music = Music.find(params[:id])
-  music.update(
+  userfavo = Userfavo.where(music_id: params[:id])
+  userfavo.create(
+    user_id: current_user.id,
+    music_id: params[:id],
     favorite: current_user.id
   )
   redirect '/home'
 end
 
 get '/favo/:id/destroy' do
-  music_favo = Music.find(params[:id])
-  music_favo.update(
-    favorite: nil
-  )
+  @music_favo = Userfavo.where(favorite: current_user.id).where(music_id: params[:id])
+  @music_favo.each do |music_favo|
+    music_favo.destroy
+  end
   redirect '/home'
 end
