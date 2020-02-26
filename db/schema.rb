@@ -22,6 +22,7 @@ ActiveRecord::Schema.define(version: 2020_02_24_012301) do
     t.integer "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "favorite"
   end
 
   create_table "userfavos", force: :cascade do |t|
@@ -29,7 +30,6 @@ ActiveRecord::Schema.define(version: 2020_02_24_012301) do
     t.integer "music_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.boolean "favorite"
   end
 
   create_table "users", force: :cascade do |t|

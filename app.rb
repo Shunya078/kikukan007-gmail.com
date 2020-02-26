@@ -32,14 +32,9 @@ before ['/search','/home','/new','/edit/:id','/delete:id'] do
 end
 
 get '/' do
+  @userfavo = Userfavo.all
   @musics = Music.all
-  @musics.each do |music|
-    Userfavo.where(user_id: music.user_id).each do |uf|
-      @name = uf.user.name
-    end
-  end
   p @musics
-  p @name
   erb :index
 end
 
@@ -95,10 +90,6 @@ get '/search' do
   res = Net::HTTP.get_response(uri)
   returned_json = JSON.parse(res.body)
   @musics = returned_json["results"]
-  # @results = returned_json["results"]
-  # if @results == ''
-  #   @results = '検索結果がありません'
-  # end
   erb :search
 end
 
@@ -116,23 +107,14 @@ post '/new' do
 end
 
 get '/home' do
-  @musics = current_user.musics
-  @music = Music.all
-  @music.each do |music|
-    Userfavo.where(user_id: music.id).each do |uf|
-      @name = uf.user.name
-    end
-  end
-  @favos = Userfavo.where(user_id: session[:user] , favorite: true)
-  if !@favos.empty?
-    @favos.each do |favo|
-    @favorites = Music.where(id: favo.music_id)
-    @users = User.where(id: favo.user_id)
+  @mymusics = current_user.musics
+  @musics = Music.all
+  @musics.each do |music|
+    if !music.favorite.nil?
+    @user = User.where(id: music.favorite)
     end
   end
   p @musics
-  p nil
-  p @users
   erb :home
 end
 
@@ -154,9 +136,18 @@ get '/delete/:id' do
   redirect '/home'
 end
 
-get '/favo/:id' do
-  userfavo = Userfavo.find(params[:id])
-  userfavo.favorite = !userfavo.favorite
-  userfavo.save
+get '/favo/:id/create' do
+  music = Music.find(params[:id])
+  music.update(
+    favorite: current_user.id
+  )
+  redirect '/home'
+end
+
+get '/favo/:id/destroy' do
+  music_favo = Music.find(params[:id])
+  music_favo.update(
+    favorite: nil
+  )
   redirect '/home'
 end

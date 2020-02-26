@@ -2,8 +2,8 @@
   <h1><%= current_user.name%>の投稿</h1>
       <div class="container-fluid">
       <ul>
-        <% if !@musics.empty? %>
-            <% @musics.each do |music| %>
+        <% if !@mymusics.empty? %>
+            <% @mymusics.each do |music| %>
                 <div class="card">
                 <li><img src="<%= music.img %>"  class="card-img-top"></li>
                   <div class="card-body">
@@ -13,8 +13,10 @@
                   <li><a href="<%= music.sample %>">サンプル</a></li>
                   <li>コメント：<%= music.comment %></li>
                   <li>いいねしたユーザー</li>
-                  <% @users.each do |user|%>
-                    <li><%= user.name %></li>
+                  <% if !@user.nil? %>
+                    <% @user.each do |user| %>
+                      <li><%= user.name %></li>
+                    <% end %>
                   <% end %>
                   <a href="/delete/<%= music.id %>">削除</a><br>
                   <a href="/edit/<%= music.id %>">編集</a><br>
@@ -29,7 +31,8 @@
     <h2><%= current_user.name %>のイイねした投稿</h2>
      <div class="container-fluid">
       <ul>
-            <% @favorites.each do |music| %>
+        <% @musics.each do |music| %>
+          <% if music.favorite == current_user.id.to_s %>
                 <div class="card">
                 <li><img src="<%= music.img %>"  class="card-img-top"></li>
                   <div class="card-body">
@@ -39,12 +42,15 @@
                   <li><a href="<%= music.sample %>">サンプル</a></li>
                   <li>コメント：<%= music.comment %></li>
                   <li>いいねしたユーザー</li>
-                  <% @users.each do |user|%>
-                  <li><%= user.name %></li>
+                  <% if !@user.nil? %>
+                    <% @user.each do |user| %>
+                      <li><%= user.name %></li>
+                    <% end %>
                   <% end %>
                   </div>
                 </div>
             <% end %>
+          <% end %>
       </ul>
     </div>
 </div>
