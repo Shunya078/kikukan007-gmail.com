@@ -11,9 +11,16 @@ class User < ActiveRecord::Base
     presence: true
   validates :password,
     length: {in: 5..10 }
-  has_many :musics
+  has_many :userfavos
+  has_many :musics, through: :userfavos
 end
 
 class Music < ActiveRecord::Base
+  has_many :userfavos
+  has_many :users, through: :userfavos
+end
+
+class Userfavo < ActiveRecord::Base
   belongs_to :user
+  belongs_to :music
 end

@@ -2,8 +2,8 @@
   <h1><%= current_user.name%>の投稿</h1>
       <div class="container-fluid">
       <ul>
-        <% if !@musics.empty? %>
-            <% @musics.each do |music| %>
+        <% if !@mymusics.empty? %>
+            <% @mymusics.each do |music| %>
                 <div class="card">
                 <li><img src="<%= music.img %>"  class="card-img-top"></li>
                   <div class="card-body">
@@ -12,6 +12,16 @@
                   <li><%= music.album %></li>
                   <li><a href="<%= music.sample %>">サンプル</a></li>
                   <li>コメント：<%= music.comment %></li>
+                  <li>いいねしたユーザー<br>
+                  <% @userfavo_all.each do |uf|%>
+						        <% if uf.music_id == music.id %>
+							        <% if !uf.favorite.nil? %>
+							        <% @name = User.find(uf.favorite.to_i).name%>
+                      <%= @name%>
+							      <% end %>
+						        <% end %>
+					        <% end %>
+                  </li>
                   <a href="/delete/<%= music.id %>">削除</a><br>
                   <a href="/edit/<%= music.id %>">編集</a><br>
                   </div>
@@ -20,7 +30,36 @@
         <% else %>
           投稿がありません
         <% end %>
-        </ul>
+      </ul>
       </div>
-    </header>
+    <h2><%= current_user.name %>のイイねした投稿</h2>
+     <div class="container-fluid">
+      <ul>
+        <% @userfavos.each do |userfavo|%>
+          <% @favomusics = Music.where(id: userfavo.music_id) %>
+            <% @favomusics.each do |music|%>
+                <div class="card">
+                <li><img src="<%= music.img %>"  class="card-img-top"></li>
+                  <div class="card-body">
+                  <li><%= music.artist %></li>
+                  <li><%= music.title %></li>
+                  <li><%= music.album %></li>
+                  <li><a href="<%= music.sample %>">サンプル</a></li>
+                  <li>コメント：<%= music.comment %></li>
+                  <li>いいねしたユーザー<br>
+                  <% @userfavo_all.each do |uf|%>
+						        <% if uf.music_id == music.id %>
+							        <% if !uf.favorite.nil? %>
+							        <% @name = User.find(uf.favorite.to_i).name%>
+                      <%= @name%>
+							      <% end %>
+						        <% end %>
+					        <% end %>
+                  </li>
+                  </div>
+                </div>
+              <% end %>
+            <% end %>
+      </ul>
+    </div>
 </div>

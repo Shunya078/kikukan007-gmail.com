@@ -32,6 +32,7 @@ before ['/search','/home','/new','/edit/:id','/delete:id'] do
 end
 
 get '/' do
+  @userfavo = Userfavo.all
   @musics = Music.all
   erb :index
 end
@@ -88,10 +89,6 @@ get '/search' do
   res = Net::HTTP.get_response(uri)
   returned_json = JSON.parse(res.body)
   @musics = returned_json["results"]
-  # @results = returned_json["results"]
-  # if @results == ''
-  #   @results = '検索結果がありません'
-  # end
   erb :search
 end
 
@@ -109,7 +106,9 @@ post '/new' do
 end
 
 get '/home' do
-  @musics = current_user.musics
+  @userfavo_all = Userfavo.all
+  @mymusics = Music.where(user_id: current_user.id)
+  @userfavos = Userfavo.where(favorite: current_user.id)
   erb :home
 end
 
@@ -128,5 +127,23 @@ end
 get '/delete/:id' do
   music = Music.find(params[:id])
   music.destroy
+  redirect '/home'
+end
+
+get '/favo/:id/create' do
+  userfavo = Userfavo.where(music_id: params[:id])
+  userfavo.create(
+    user_id: current_user.id,
+    music_id: params[:id],
+    favorite: current_user.id
+  )
+  redirect '/home'
+end
+
+get '/favo/:id/destroy' do
+  @music_favo = Userfavo.where(favorite: current_user.id).where(music_id: params[:id])
+  @music_favo.each do |music_favo|
+    music_favo.destroy
+  end
   redirect '/home'
 end
