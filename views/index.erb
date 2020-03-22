@@ -1,49 +1,37 @@
 <div align="center">
-	<header class="first-view center-vertical" background="mike.jpg">
-		<h1>MUSIC SNS!!!</h1>
-		<% if current_user.nil? %>
-			<form action="/signin" method="post">
-				<input name="name" placeholder="ユーザー名">
-        <input name="password" type="password" placeholder="パスワード">
-        <input type="submit" value="ログイン">
-		<% end %>
-	</header>
-	<section class="center-vertical">
-		<h2>最新の投稿</h2>
-		<div class="container-fluid">
-			<ul class="reverse">
-			<% @musics.each do |music| %>
-        <div class="card">
-					<li><img src="<%= music.img %>" class="card-img-top"></li>
-					<div class="card-body">
-					<li>artist:<%= music.artist %></li>
-					<li>コメント:<%= music.comment %></li>
-    			<% @name = User.find(music.user_id).name %>
-					<li>投稿者:<%= @name %></li>
-					<li>いいねしたユーザー<br>
-					<% @userfavo.each do |uf|%>
-						<% if uf.music_id == music.id %>
-							<% if !uf.favorite.nil? %>
-							<% @img = User.find(uf.favorite.to_i).img%>
-								<img src="<%= @img %>" width="40" height="40">
-							<% end %>
-						<% end %>
-					<% end %>
-					</li>
-					<li>
-					<% if !current_user.nil? %>
-						<% favo = Userfavo.where(favorite: current_user.id).where(music_id: music.id).count %>
-						<% if favo == 0 %>
-						<a href='/favo/<%= music.id %>/create'>いいねする</a>
-						<% else %>
-						<a href='/favo/<%= music.id %>/destroy'>いいね解除</a>
-						<% end %>
-					<% end %>
-					</li>
-					</div>
-				</div>
-			<% end %>
-			</ul>
-		</div>
-	</section>
+<h1><a href="/rigaku">理学部</a><h1>
+<ul>
+<h1>医学部保健学科<h1>
+<li><a href="/kango">看護学専攻</a></li>
+<li><a href="/housya">放射線技術科学専攻</a></li>
+<li><a href="/kensa">検査技術科学専攻</a></li>
+<li><a href="/rigakuryoho">理学療法学専攻</a></li>
+<li><a href="/sagyoryoho">作業療法学専攻</a></li>
+</ul>
+<ul>
+<h1>工学部</h1>
+<li><a href="/kasei">化学生命工学科</a></li>
+<li><a href="/buturi">物理工学科</a></li>
+<li><a href="/mate">マテリアル工学科</a></li>
+<li><a href="/denzyo">電気電子情報工学科</a></li>
+<li><a href="/kikou">機械・航空宇宙工学科</a></li>
+<li><a href="/eneri">エネルギー理工学科</a></li>
+<li><a href="/kentiku">環境土木・建築学科</a></li>
+</ul>
+<ul>
+<h1>農学部<h1>
+<li><a href="/seibutu">生物環境科学学科</a></li>
+<li><a href="/sizenseibutu">自然生物資源学科</a></li>
+<li><a href="/ousei">応用生命科学学科</a></li>
+</ul>
+<h1><a href="/bungaku">文学部</a><h1>
+<h1><a href="/kyoiku">教育学部</a><h1>
+<h1><a href="/hou">法学部</a><h1>
+<h1><a href="/keizai">経済学部</a><h1>
+<ul>
+<h1>情報学部<h1>
+<li><a href="/sizen">自然情報学科</a></li>
+<li><a href="/ningen">人間・社会情報学科</a></li>
+<li><a href="/konpixyuta">コンピュータ科学学科</a></li>
+</ul>
 </div>

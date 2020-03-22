@@ -1,0 +1,12 @@
+<div align="center">
+<% if !current_user.nil? %>
+ <form action="/bungaku_create" method="post" enctype="multipart/form-data">
+ <p>写真<input class="file" type="file" name="file"></p>
+ <p><input class="form-submit" type="submit" value="投稿"></p>
+ </form>
+<% end %>
+<% if !User.find_by(name: "nul_20shinkan").bungaku_image.nil? %>
+  <img src="<%= User.find_by(name: "nul_20shinkan").bungaku_image %>" style="width:100%; height:2200px"></li><br>
+<% else %>
+  <h1>工事中です。</h1>
+<% end %>

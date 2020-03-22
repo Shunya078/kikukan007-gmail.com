@@ -25,125 +25,462 @@ before do
   end
 end
 
-before ['/search','/home','/new','/edit/:id','/delete:id'] do
-    if current_user.nil?
-        redirect '/'
-    end
-end
-
 get '/' do
-  @userfavo = Userfavo.all
-  @musics = Music.all
+  p User.all
   erb :index
 end
 
-get '/signup' do
-  erb :signup
-end
-
-post '/signup' do
-  img = ''
-  if params[:file]
-    img_file = params[:file]
-    tempfile = img_file[:tempfile]
-    upload = Cloudinary::Uploader.upload(tempfile.path)
-    img = upload['url']
-  else
-    img = "https://res.cloudinary.com/dcksv5swp/image/upload/v1549968178/qusyecxamstqbg0lejdz.png"
-  end
-
-  @user = User.create(name:params[:name], password:params[:password],
-    password_confirmation:params[:password_confirmation], img:img)
-  if @user.persisted?
-    session[:user] = @user.id
-    redirect '/search'
-  else
-    redirect '/'
-  end
+get '/signin' do
+  erb :signin
 end
 
 post '/signin' do
   user = User.find_by(name: params[:name])
   if user && user.authenticate(params[:password])
     session[:user] = user.id
-    redirect '/search'
-  else
-    redirect '/signup'
   end
+  redirect '/'
 end
 
-get '/signout' do
+get '/logout' do
   session[:user] = nil
   redirect '/'
 end
 
-get '/search' do
-  keyword = params[:keyword]
-  uri = URI('https://itunes.apple.com/search')
-  uri.query = URI.encode_www_form({
-    term: keyword,
-    country: "US",
-    media: "music",
-    limit: 10
-  })
-  res = Net::HTTP.get_response(uri)
-  returned_json = JSON.parse(res.body)
-  @musics = returned_json["results"]
-  erb :search
+get '/bungaku' do
+  p User.all
+  erb :bungaku
 end
 
-post '/new' do
-  current_user.musics.create(
-    artist: params[:artist],
-    title: params[:title],
-    album: params[:album],
-    comment: params[:comment],
-    img: params[:img],
-    sample: params[:sample],
-    user_id: current_user.id
-  )
-  redirect '/home'
-end
-
-get '/home' do
-  @userfavo_all = Userfavo.all
-  @mymusics = Music.where(user_id: current_user.id)
-  @userfavos = Userfavo.where(favorite: current_user.id)
-  erb :home
-end
-
-get '/edit/:id' do
-  @music = Music.find(params[:id])
-  erb :edit
-end
-
-post '/edit/:id' do
-  music = Music.find(params[:id])
-  music.comment = params[:comment]
-  music.save
-  redirect '/home'
-end
-
-get '/delete/:id' do
-  music = Music.find(params[:id])
-  music.destroy
-  redirect '/home'
-end
-
-get '/favo/:id/create' do
-  userfavo = Userfavo.where(music_id: params[:id])
-  userfavo.create(
-    user_id: current_user.id,
-    music_id: params[:id],
-    favorite: current_user.id
-  )
-  redirect '/home'
-end
-
-get '/favo/:id/destroy' do
-  @music_favo = Userfavo.where(favorite: current_user.id).where(music_id: params[:id])
-  @music_favo.each do |music_favo|
-    music_favo.destroy
+post '/bungaku_create' do
+  user = User.find_by(name: "nul_20shinkan")
+  image = ''
+  if params[:file]
+    img_file = params[:file]
+    tempfile = img_file[:tempfile]
+    upload = Cloudinary::Uploader.upload(tempfile.path)
+    image = upload['url']
   end
-  redirect '/home'
+  user.update(
+    bungaku_image: image
+  )
+  redirect '/bungaku'
+end
+
+get '/buturi' do
+  erb :buturi
+end
+
+post '/buturi_create' do
+  user = User.find_by(name: "nul_20shinkan")
+  image = ''
+  if params[:file]
+    img_file = params[:file]
+    tempfile = img_file[:tempfile]
+    upload = Cloudinary::Uploader.upload(tempfile.path)
+    image = upload['url']
+  end
+  user.update(
+    buturi_image: image
+  )
+  redirect '/buturi'
+end
+
+get '/denzyo' do
+  erb :denzyo
+end
+
+post '/denzyo_create' do
+  user = User.find_by(name: "nul_20shinkan")
+  image = ''
+  if params[:file]
+    img_file = params[:file]
+    tempfile = img_file[:tempfile]
+    upload = Cloudinary::Uploader.upload(tempfile.path)
+    image = upload['url']
+  end
+  user.update(
+    denzyo_image: image
+  )
+  redirect '/denzyo'
+end
+
+get '/eneri' do
+  erb :eneri
+end
+
+post '/eneri_create' do
+  user = User.find_by(name: "nul_20shinkan")
+  image = ''
+  if params[:file]
+    img_file = params[:file]
+    tempfile = img_file[:tempfile]
+    upload = Cloudinary::Uploader.upload(tempfile.path)
+    image = upload['url']
+  end
+  user.update(
+    eneri_image: image
+  )
+  redirect '/eneri'
+end
+
+get '/hou' do
+  erb :hou
+end
+
+post '/hou_create' do
+  user = User.find_by(name: "nul_20shinkan")
+  image = ''
+  if params[:file]
+    img_file = params[:file]
+    tempfile = img_file[:tempfile]
+    upload = Cloudinary::Uploader.upload(tempfile.path)
+    image = upload['url']
+  end
+  user.update(
+    hou_image: image
+  )
+  redirect '/hou'
+end
+
+get '/housya' do
+  erb :housya
+end
+
+post '/housya_create' do
+  user = User.find_by(name: "nul_20shinkan")
+  image = ''
+  if params[:file]
+    img_file = params[:file]
+    tempfile = img_file[:tempfile]
+    upload = Cloudinary::Uploader.upload(tempfile.path)
+    image = upload['url']
+  end
+  user.update(
+    housya_image: image
+  )
+  redirect '/housya'
+end
+
+get '/kango' do
+  erb :kango
+end
+
+post '/kango_create' do
+  user = User.find_by(name: "nul_20shinkan")
+  image = ''
+  if params[:file]
+    img_file = params[:file]
+    tempfile = img_file[:tempfile]
+    upload = Cloudinary::Uploader.upload(tempfile.path)
+    image = upload['url']
+  end
+  user.update(
+    kango_image: image
+  )
+  redirect '/kango'
+end
+
+get '/kasei' do
+  erb :kasei
+end
+
+post '/kasei_create' do
+  user = User.find_by(name: "nul_20shinkan")
+  image = ''
+  if params[:file]
+    img_file = params[:file]
+    tempfile = img_file[:tempfile]
+    upload = Cloudinary::Uploader.upload(tempfile.path)
+    image = upload['url']
+  end
+  user.update(
+    kasei_image: image
+  )
+  redirect '/kasei'
+end
+
+get '/keizai' do
+  erb :keizai
+end
+
+post '/keizai_create' do
+  user = User.find_by(name: "nul_20shinkan")
+  image = ''
+  if params[:file]
+    img_file = params[:file]
+    tempfile = img_file[:tempfile]
+    upload = Cloudinary::Uploader.upload(tempfile.path)
+    image = upload['url']
+  end
+  user.update(
+    keizai_image: image
+  )
+  redirect '/keizai'
+end
+
+get '/kensa' do
+  erb :kensa
+end
+
+post '/kensa_create' do
+  user = User.find_by(name: "nul_20shinkan")
+  image = ''
+  if params[:file]
+    img_file = params[:file]
+    tempfile = img_file[:tempfile]
+    upload = Cloudinary::Uploader.upload(tempfile.path)
+    image = upload['url']
+  end
+  user.update(
+    kensa_image: image
+  )
+  redirect '/kensa'
+end
+
+get '/kentiku' do
+  erb :kentiku
+end
+
+post '/kentiku_create' do
+  user = User.find_by(name: "nul_20shinkan")
+  image = ''
+  if params[:file]
+    img_file = params[:file]
+    tempfile = img_file[:tempfile]
+    upload = Cloudinary::Uploader.upload(tempfile.path)
+    image = upload['url']
+  end
+  user.update(
+    kentiku_image: image
+  )
+  redirect '/kentiku'
+end
+
+get '/kikou' do
+  erb :kikou
+end
+
+post '/kikou_create' do
+  user = User.find_by(name: "nul_20shinkan")
+  image = ''
+  if params[:file]
+    img_file = params[:file]
+    tempfile = img_file[:tempfile]
+    upload = Cloudinary::Uploader.upload(tempfile.path)
+    image = upload['url']
+  end
+  user.update(
+    kikou_image: image
+  )
+  redirect '/kikou'
+end
+
+get '/konpixyuta' do
+  erb :konpixyuta
+end
+
+post '/konpixyuta_create' do
+  user = User.find_by(name: "nul_20shinkan")
+  image = ''
+  if params[:file]
+    img_file = params[:file]
+    tempfile = img_file[:tempfile]
+    upload = Cloudinary::Uploader.upload(tempfile.path)
+    image = upload['url']
+  end
+  user.update(
+    konpixyuta_image: image
+  )
+  redirect '/konpixyuta'
+end
+
+get '/kyoiku' do
+  erb :kyoiku
+end
+
+post '/kyoiku_create' do
+  user = User.find_by(name: "nul_20shinkan")
+  image = ''
+  if params[:file]
+    img_file = params[:file]
+    tempfile = img_file[:tempfile]
+    upload = Cloudinary::Uploader.upload(tempfile.path)
+    image = upload['url']
+  end
+  user.update(
+    kyoiku_image: image
+  )
+  redirect '/kyoiku'
+end
+
+get '/mate' do
+  erb :mate
+end
+
+post '/mate_create' do
+  user = User.find_by(name: "nul_20shinkan")
+  image = ''
+  if params[:file]
+    img_file = params[:file]
+    tempfile = img_file[:tempfile]
+    upload = Cloudinary::Uploader.upload(tempfile.path)
+    image = upload['url']
+  end
+  user.update(
+    mate_image: image
+  )
+  redirect '/mate'
+end
+
+get '/ningen' do
+  erb :ningen
+end
+
+post '/ningen_create' do
+  user = User.find_by(name: "nul_20shinkan")
+  image = ''
+  if params[:file]
+    img_file = params[:file]
+    tempfile = img_file[:tempfile]
+    upload = Cloudinary::Uploader.upload(tempfile.path)
+    image = upload['url']
+  end
+  user.update(
+    ningen_image: image
+  )
+  redirect '/ningen'
+end
+
+get '/ousei' do
+  erb :ousei
+end
+
+post '/ousei_create' do
+  user = User.find_by(name: "nul_20shinkan")
+  image = ''
+  if params[:file]
+    img_file = params[:file]
+    tempfile = img_file[:tempfile]
+    upload = Cloudinary::Uploader.upload(tempfile.path)
+    image = upload['url']
+  end
+  user.update(
+    ousei_image: image
+  )
+  redirect '/ousei'
+end
+
+get '/rigaku' do
+  erb :rigaku
+end
+
+post '/rigaku_create' do
+  user = User.find_by(name: "nul_20shinkan")
+  image = ''
+  if params[:file]
+    img_file = params[:file]
+    tempfile = img_file[:tempfile]
+    upload = Cloudinary::Uploader.upload(tempfile.path)
+    image = upload['url']
+  end
+  user.update(
+    rigaku_image: image
+  )
+  redirect '/rigaku'
+end
+
+get '/rigakuryoho' do
+  erb :rigakuryoho
+end
+
+post '/rigakuryoho_create' do
+  user = User.find_by(name: "nul_20shinkan")
+  image = ''
+  if params[:file]
+    img_file = params[:file]
+    tempfile = img_file[:tempfile]
+    upload = Cloudinary::Uploader.upload(tempfile.path)
+    image = upload['url']
+  end
+  user.update(
+    rigakuryoho_image: image
+  )
+  redirect '/rigakuryohoho'
+end
+
+get '/sagyoryoho' do
+  erb :sagyoryoho
+end
+
+post '/sagyoryoho_create' do
+  user = User.find_by(name: "nul_20shinkan")
+  image = ''
+  if params[:file]
+    img_file = params[:file]
+    tempfile = img_file[:tempfile]
+    upload = Cloudinary::Uploader.upload(tempfile.path)
+    image = upload['url']
+  end
+  user.update(
+    sagyoryoho_image: image
+  )
+  redirect '/sagyoryoho'
+end
+
+get '/seibutu' do
+  erb :seibutu
+end
+
+post '/seibutu_create' do
+  user = User.find_by(name: "nul_20shinkan")
+  image = ''
+  if params[:file]
+    img_file = params[:file]
+    tempfile = img_file[:tempfile]
+    upload = Cloudinary::Uploader.upload(tempfile.path)
+    image = upload['url']
+  end
+  user.update(
+    seibutu_image: image
+  )
+  redirect '/seibutu'
+end
+
+get '/sizen' do
+  erb :sizen
+end
+
+post '/sizen_create' do
+  user = User.find_by(name: "nul_20shinkan")
+  image = ''
+  if params[:file]
+    img_file = params[:file]
+    tempfile = img_file[:tempfile]
+    upload = Cloudinary::Uploader.upload(tempfile.path)
+    image = upload['url']
+  end
+  user.update(
+    sizen_image: image
+  )
+  redirect '/sizen'
+end
+
+get '/sizenseibutu' do
+  erb :sizenseibutu
+end
+
+post '/sizenseibutu_create' do
+  user = User.find_by(name: "nul_20shinkan")
+  image = ''
+  if params[:file]
+    img_file = params[:file]
+    tempfile = img_file[:tempfile]
+    upload = Cloudinary::Uploader.upload(tempfile.path)
+    image = upload['url']
+  end
+  user.update(
+    sizenseibutu_image: image
+  )
+  redirect '/sizenseibutu'
 end

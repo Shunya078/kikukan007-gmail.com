@@ -2,7 +2,7 @@
 <html lang="ja">
 <head>
   <meta charset="UTF-8">
-  <title>music_sns!!</title>
+  <title>履修登録</title>
   <link rel="stylesheet" href="/stylesheet.css">
   <link href="https://fonts.googleapis.com/css?family=Righteous" rel="stylesheet">
   <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
@@ -14,19 +14,15 @@
 <body>
   <nav class="navbar navbar-expand-sm">
     <div class="container">
-      <div class="collapse navbar-collapse justify-content-center">
-        <a href="/">music sns!!!</a>
-        <% if !current_user.nil? %>
-          <% unless current_user.img.empty? %>
-            <a href="/home"><img src="<%= current_user.img %>" width="40" height="40" style="background-color:#FFFFFF; border-radius: 30px;"></a>
-          <% else %>
-            <a href="/home"><img src="<%= img %>" width="40" height="40" style="background-color:#FFFFFF; border-radius: 30px;"></a>
-          <% end %>
-          <a href="/search">search</a>
-          <a href="/signout">logout</a>
-        <% else %>
-          <a href="/signup">新規登録</a>
-        <% end %>
+      <div class="collapse navbar-collapse justify-content-start">
+        <a href="/" style="font-size:40px;">男子ラクロス部：履修早見表</a>
+      </div>
+      <div class="collapse navbar-collapse justify-content-end">
+      <% if current_user.nil? %>
+      <a href="/signin">編集</a>
+      <% else %>
+      <a href="/logout">ログアウト</a>
+      <% end %>
       </div>
     </div>
   </nav>
