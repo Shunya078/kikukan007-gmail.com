@@ -10,6 +10,7 @@ class CreateUsers < ActiveRecord::Migration[5.2]
       t.string :hou_image
       t.string :housya_image
       t.string :kango_image
+      t.string :keizai_image
       t.string :kasei_image
       t.string :kensa_image
       t.string :kentiku_image

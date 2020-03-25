@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_03_22_165804) do
+ActiveRecord::Schema.define(version: 2020_03_25_082916) do
 
   create_table "users", force: :cascade do |t|
     t.string "name"
@@ -22,6 +22,7 @@ ActiveRecord::Schema.define(version: 2020_03_22_165804) do
     t.string "hou_image"
     t.string "housya_image"
     t.string "kango_image"
+    t.string "keizai_image"
     t.string "kasei_image"
     t.string "kensa_image"
     t.string "kentiku_image"
