@@ -28,9 +28,6 @@ end
 get '/' do
   p User.all
   @user = User.all
-  #   User.where(name: "nul_20shinkan").update(
-  #   kou_url: nil
-  # )
   erb :index
 end
 
