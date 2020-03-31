@@ -3,29 +3,16 @@ class CreateUsers < ActiveRecord::Migration[5.2]
     create_table :users do |t|
       t.string :name
       t.string :password_digest
-      t.string :bungaku_image
-      t.string :buturi_image
-      t.string :denzyo_image
-      t.string :eneri_image
-      t.string :hou_image
-      t.string :housya_image
-      t.string :kango_image
-      t.string :keizai_image
-      t.string :kasei_image
-      t.string :kensa_image
-      t.string :kentiku_image
-      t.string :kikou_image
-      t.string :konpixyuta_image
-      t.string :kyoiku_image
-      t.string :mate_image
-      t.string :ningen_image
-      t.string :ousei_image
-      t.string :rigaku_image
-      t.string :rigakuryoho_image
-      t.string :sagyoryoho_image
-      t.string :seibutu_image
-      t.string :sizen_image
-      t.string :sizenseibutu_image
+      t.string :bungaku_url
+      t.string :hou_url
+      t.string :hoken_url
+      t.string :keizai_url
+      t.string :kou_url
+      t.string :kyoiku_url
+      t.string :rigaku_url
+      t.string :nou_url
+      t.string :zyohou_ri_url
+      t.string :zyohou_bun_url
 
       t.timestamps null: false
     end

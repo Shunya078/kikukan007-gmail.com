@@ -15,7 +15,7 @@ header h1{
 .navbar{
   height: 70px;
   width: 100%;
-  background-color: rgb(70, 69, 69);
+  background-color: rgb(0,128,0);
 }
 
 nav a{
@@ -46,4 +46,34 @@ nav a:hover{
 ul li{
   list-style: none;
   font-size: 24px;
+}
+
+.hidden_box {
+    margin: 2em;
+    padding: 0;
+}
+
+.hidden_box label {
+    padding: 15px;
+    font-weight: bold;
+    border: solid 2px black;
+    cursor :pointer;
+}
+
+.hidden_box input {
+    display: none;
+}
+
+.hidden_box .hidden_show {
+    height: 0;
+    padding: 0;
+    overflow: hidden;
+    opacity: 0;
+    transition: 0.8s;
+}
+
+.hidden_box input:checked ~ .hidden_show {
+    padding: 10px 0;
+    height: auto;
+    opacity: 1;
 }
