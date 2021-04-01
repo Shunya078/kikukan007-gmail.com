@@ -1,5 +1,5 @@
 class Api::V1::UsersController < Api::ApiController
-  before_action :set_user, only: %i(show update destroy)
+  before_action :set_user, only: %i[show update destroy]
 
   # GET /users
   # GET /users.json
@@ -9,8 +9,7 @@ class Api::V1::UsersController < Api::ApiController
 
   # GET /users/1
   # GET /users/1.json
-  def show
-  end
+  def show; end
 
   # POST /users
   # POST /users.json
@@ -41,13 +40,41 @@ class Api::V1::UsersController < Api::ApiController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_user
-      @user = User.find(params[:id])
-    end
 
-    # Only allow a list of trusted parameters through.
-    def user_params
-      params.require(:user).permit(:name, :bungaku_image, :butsuri_image, :denzyo_image, :eneri_image, :hou_image, :housya_image, :kango_image, :keizai_image, :kasei_image, :kensa_image, :kentiku_image, :kikou_image, :konpixyuta_image, :kyoiku_image, :mate_image, :ningen_image, :ousei_image, :rigaku_image, :rigakuryoho_image, :sagyoryoho_image, :seibutu_image, :sizen_image, :sizenseibutu_image)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_user
+    @user = User.find(params[:id])
+  end
+
+  # Only allow a list of trusted parameters through.
+  def user_params
+    params
+      .require(:user)
+      .permit(
+        :name,
+        :bungaku_image,
+        :butsuri_image,
+        :denzyo_image,
+        :eneri_image,
+        :hou_image,
+        :housya_image,
+        :kango_image,
+        :keizai_image,
+        :kasei_image,
+        :kensa_image,
+        :kentiku_image,
+        :kikou_image,
+        :konpixyuta_image,
+        :kyoiku_image,
+        :mate_image,
+        :ningen_image,
+        :ousei_image,
+        :rigaku_image,
+        :rigakuryoho_image,
+        :sagyoryoho_image,
+        :seibutu_image,
+        :sizen_image,
+        :sizenseibutu_image
+      )
+  end
 end

@@ -1,5 +1,6 @@
 class Api::ApiController < ApplicationController
-  class ActionController::Forbidden < ActionController::ActionControllerError; end
+  class ActionController::Forbidden < ActionController::ActionControllerError
+  end
 
   rescue_from StandardError, with: :error500
   rescue_from ActiveRecord::RecordInvalid, with: :error400
