@@ -1,0 +1,74 @@
+/**
+  breakpoints
+**/
+$tablet-max-bp: 960px;
+$mobile-max-bp: 520px;
+
+$breakpoint-up: (
+  'sm': 'screen and (min-width: 520px)',
+  'md': 'screen and (min-width: 768px)',
+  'lg': 'screen and (min-width: 1000px)',
+  'xl': 'screen and (min-width: 1200px)',
+) !default;
+
+// max-width
+$breakpoint-down: (
+  'sm': 'screen and (max-width: 519px)',
+  'md': 'screen and (max-width: 767px)',
+  'lg': 'screen and (max-width: 999px)',
+  'xl': 'screen and (max-width: 1199px)',
+) !default;
+
+/**
+  media query
+**/
+
+@mixin xl-up($breakpoint: xl) {
+  @media #{map-get($breakpoint-up, $breakpoint)} {
+    @content;
+  }
+}
+
+@mixin mq-up($breakpoint: md) {
+  @media #{map-get($breakpoint-up, $breakpoint)} {
+    @content;
+  }
+}
+
+@mixin mq-down($breakpoint: md) {
+  @media #{map-get($breakpoint-down, $breakpoint)} {
+    @content;
+  }
+}
+
+@mixin mq-tablet {
+  @media (max-width: $tablet-max-bp) {
+    @content;
+  }
+}
+
+@mixin mq-small-tablet {
+  @media (max-width: 600px) {
+    @content;
+  }
+}
+
+@mixin mq-mobile {
+  @media (max-width: $mobile-max-bp) {
+    @content;
+  }
+}
+
+/**
+  scss snippets
+**/
+
+@mixin clickable {
+  transition: opacity 0.3s;
+  cursor: pointer;
+
+  &:hover {
+    opacity: 0.6;
+    @content;
+  }
+}

@@ -1,0 +1,33 @@
+{
+  "name": "risyu",
+  "version": "1.0.0",
+  "description": "My magnificent Nuxt.js project",
+  "author": "shunya78",
+  "private": true,
+  "scripts": {
+    "dev": "cross-env NODE_ENV=\"dev\" nuxt-ts --port 3000",
+    "build": "cross-env NODE_ENV=\"build\" nuxt-ts build",
+    "start": "nuxt-ts start",
+    "generate": "nuxt-ts generate",
+    "base_login": "firebase login --no-localhost",
+    "base_init": "firebase init",
+    "base_deploy": "firebase deploy"
+  },
+  "dependencies": {
+    "@nuxt/types": "^2.15.4",
+    "@nuxt/typescript": "^2.8.1",
+    "@nuxt/typescript-runtime": "^0.4.0",
+    "@nuxtjs/axios": "^5.13.1",
+    "@nuxtjs/dotenv": "^1.4.1",
+    "core-js": "^3.10.0",
+    "cross-env": "^7.0.3",
+    "nuxt": "^2.0.0",
+    "nuxt-property-decorator": "^2.9.1",
+    "vue-class-component": "^7.2.6",
+    "vue-property-decorator": "^9.1.2"
+  },
+  "devDependencies": {
+    "@nuxt/typescript-build": "^0.6.0",
+    "@nuxtjs/vuetify": "^1.0.0"
+  }
+}
