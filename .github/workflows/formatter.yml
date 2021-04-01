@@ -40,7 +40,6 @@ jobs:
 
       - name: Run Prettier Backend
         run: |
-          cd ruby
           ./node_modules/.bin/prettier --write '**/*.rb'
         working-directory: ./v2/backend
 
