@@ -35,7 +35,7 @@ jobs:
         gem install bundler --no-document
         bundle install --jobs 4 --retry 3 --deployment
         bundle exec rails db:drop db:create db:environment:set RAILS_ENV=test db:migrate
-      working-directory: ./backend
+      working-directory: ./v2/backend
     - name: rubocop
       run:  bundle exec rubocop
-      working-directory: ./backend
+      working-directory: ./v2/backend

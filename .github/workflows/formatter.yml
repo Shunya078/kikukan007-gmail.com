@@ -22,9 +22,9 @@ jobs:
 
       - name: gem Install Prettier
         run: |
-          cd ruby
+          cd v2
           gem install prettier
-        working-directory: ./v2/backend
+        working-directory: ./backend
 
       - name: npm Install Prettier
         run: |
