@@ -22,7 +22,6 @@ jobs:
 
       - name: gem Install Prettier
         run: |
-          cd v2
           gem install prettier
         working-directory: ./backend
 
