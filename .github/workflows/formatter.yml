@@ -23,7 +23,7 @@ jobs:
       - name: gem Install Prettier
         run: |
           gem install prettier
-        working-directory: ./backend
+        working-directory: ./v2/backend
 
       - name: npm Install Prettier
         run: |
