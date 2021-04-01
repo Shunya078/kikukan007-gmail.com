@@ -24,7 +24,7 @@ jobs:
         run: |
           cd ruby
           gem install prettier
-        working-directory: ./backend
+        working-directory: ./v2/backend
 
       - name: npm Install Prettier
         run: |
@@ -34,17 +34,17 @@ jobs:
         run: |
           cd ruby
           npm install --save-dev prettier @prettier/plugin-ruby
-        working-directory: ./backend
+        working-directory: ./v2/backend
 
       - name: Run Prettier Frontend
         run: prettier --write "**/*.{css,html,js,vue}"
-        working-directory: ./frontend
+        working-directory: ./v2/frontend
 
       - name: Run Prettier Backend
         run: |
           cd ruby
           ./node_modules/.bin/prettier --write '**/*.rb'
-        working-directory: ./backend
+        working-directory: ./v2/backend
 
       - name: Commit format
         uses: stefanzweifel/git-auto-commit-action@v4

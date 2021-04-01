@@ -17,7 +17,7 @@ jobs:
     container:
       image: ruby:2.6.5
       env:
-        DATABASE_URL: mysql2://root:password@mysql:3306/mos_api_test
+        DATABASE_URL: mysql2://root:password@mysql:3306/risyu
 
     steps:
     - uses: actions/checkout@v1
@@ -28,7 +28,7 @@ jobs:
         curl -sL https://deb.nodesource.com/setup_12.x | bash -
         apt install -y nodejs yarn
         apt-get install -y libmagic-dev
-      working-directory: ./backend
+      working-directory: ./v2/backend
     - name: Build
       run: |
         rm -f config/database.yml
