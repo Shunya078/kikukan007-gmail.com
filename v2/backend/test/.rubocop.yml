@@ -6,7 +6,6 @@ AllCops:
   Include:
     - app/**/*.rb
     - lib/**/*.rb
-    - spec/**/*.rb
   Exclude:
     - app/views/**/*
     - vendor/**/*

@@ -1,9 +1,10 @@
-Rails.application.routes.draw do
-  namespace :api do
-    namespace :v1 do
-      resources :users, only: [:index, :show, :create, :update, :destroy]
-      resources :questions, only: [:index, :show, :create, :update, :destroy]
-      resources :refers, only: [:index, :create, :update, :destroy]
+Rails
+  .application
+  .routes
+  .draw do
+    namespace :api do
+      namespace :v1 do
+        resources :users, only: %i[index show create update destroy]
+      end
     end
   end
-end
