@@ -31,7 +31,6 @@ jobs:
 
       - name: Install Prettier Plugin
         run: |
-          cd ruby
           npm install --save-dev prettier @prettier/plugin-ruby
         working-directory: ./v2/backend
 
