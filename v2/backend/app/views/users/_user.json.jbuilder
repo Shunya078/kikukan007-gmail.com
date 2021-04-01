@@ -1,0 +1,2 @@
+json.extract! user, :id, :name, :bungaku_image, :butsuri_image, :denzyo_image, :eneri_image, :hou_image, :housya_image, :kango_image, :keizai_image, :kasei_image, :kensa_image, :kentiku_image, :kikou_image, :konpixyuta_image, :kyoiku_image, :mate_image, :ningen_image, :ousei_image, :rigaku_image, :rigakuryoho_image, :sagyoryoho_image, :seibutu_image, :sizen_image, :sizenseibutu_image, :created_at, :updated_at
+json.url user_url(user, format: :json)
