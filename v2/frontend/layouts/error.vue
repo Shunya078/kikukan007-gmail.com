@@ -1,11 +1,7 @@
 <template>
   <v-app dark>
-    <h1 v-if="error.statusCode === 404">
-      エラーが発生しました。
-    </h1>
-    <h1 v-else>
-      エラーが発生しました。
-    </h1>
+    <h1 v-if="error.statusCode === 404">エラーが発生しました。</h1>
+    <h1 v-else>エラーが発生しました。</h1>
     <NuxtLink to="/"> トップページへ戻る </NuxtLink>
   </v-app>
 </template>

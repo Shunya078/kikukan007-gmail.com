@@ -273,21 +273,17 @@ export default class DefaultLayout extends Vue {
   toPageMove(title: string, id: number) {
     if (title == this.items[0].title) {
       this.$router.push("/rigaku");
-      return
-    }
-    else if(title == this.items[1].title){
+      return;
+    } else if (title == this.items[1].title) {
       this.$router.push(`/igaku/${id + 1}`);
-      return
-    }
-    else if(title == this.items[2].title){
+      return;
+    } else if (title == this.items[2].title) {
       this.$router.push(`/kougaku/${id + 1}`);
-      return
-    }
-    else if(title == this.items[3].title){
+      return;
+    } else if (title == this.items[3].title) {
       this.$router.push(`/nougaku/${id + 1}`);
-      return
-    }
-    else if(title == this.items[4].title){
+      return;
+    } else if (title == this.items[4].title) {
       this.$router.push("/bungaku");
       return;
     } else if (title == this.items[5].title) {
@@ -298,11 +294,10 @@ export default class DefaultLayout extends Vue {
       return;
     } else if (title == this.items[7].title) {
       this.$router.push("/keizai");
-      return
-    }
-    else if(title == this.items[8].title){
+      return;
+    } else if (title == this.items[8].title) {
       this.$router.push(`zyoho/${id + 1}`);
-      return
+      return;
     }
     this.$router.push("/error");
   }
