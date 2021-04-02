@@ -93,15 +93,13 @@ export default class DefaultLayout extends Vue {
     }, 1000);
   }
 
-  get src(): string{
-    if(this.$route.params.id == '1'){
-      return "seibutu.png"
-    }
-    else if(this.$route.params.id == '2'){
-      return "sisei.png"
-    }
-    else if(this.$route.params.id == '3'){
-      return "ousei.png"
+  get src(): string {
+    if (this.$route.params.id == "1") {
+      return "seibutu.png";
+    } else if (this.$route.params.id == "2") {
+      return "sisei.png";
+    } else if (this.$route.params.id == "3") {
+      return "ousei.png";
     }
     return "アップデートです。";
   }
@@ -114,7 +112,7 @@ export default class DefaultLayout extends Vue {
     } else if (this.$route.params.id == "3") {
       return "応用生命科学学科";
     }
-    return ''
+    return "";
   }
 }
 </script>

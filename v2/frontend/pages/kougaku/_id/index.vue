@@ -93,27 +93,21 @@ export default class DefaultLayout extends Vue {
     }, 1000);
   }
 
-  get src(): string{
-    if(this.$route.params.id == '1'){
-      return "kasei.png"
-    }
-    else if(this.$route.params.id == '2'){
-      return "buturi.png"
-    }
-    else if(this.$route.params.id == '3'){
-      return "material.png"
-    }
-    else if(this.$route.params.id == '4'){
-      return "denzyo.png"
-    }
-    else if(this.$route.params.id == '5'){
-      return "kikou.png"
-    }
-    else if(this.$route.params.id == '6'){
-      return "energy.png"
-    }
-    else if(this.$route.params.id == '7'){
-      return "doboku.png"
+  get src(): string {
+    if (this.$route.params.id == "1") {
+      return "kasei.png";
+    } else if (this.$route.params.id == "2") {
+      return "buturi.png";
+    } else if (this.$route.params.id == "3") {
+      return "material.png";
+    } else if (this.$route.params.id == "4") {
+      return "denzyo.png";
+    } else if (this.$route.params.id == "5") {
+      return "kikou.png";
+    } else if (this.$route.params.id == "6") {
+      return "energy.png";
+    } else if (this.$route.params.id == "7") {
+      return "doboku.png";
     }
     return "アップデートです。";
   }
@@ -134,7 +128,7 @@ export default class DefaultLayout extends Vue {
     } else if (this.$route.params.id == "7") {
       return "環境土木・建築学科";
     }
-    return ''
+    return "";
   }
 }
 </script>

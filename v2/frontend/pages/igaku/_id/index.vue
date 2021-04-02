@@ -93,24 +93,19 @@ export default class DefaultLayout extends Vue {
     }, 1000);
   }
 
-  get src(): string{
-    if(this.$route.params.id == '1'){
-      return "アップデートです。"
-    }
-    else if(this.$route.params.id == '2'){
-      return "kango.png"
-    }
-    else if(this.$route.params.id == '3'){
-      return "housya.png"
-    }
-    else if(this.$route.params.id == '4'){
-      return "kensa.png"
-    }
-    else if(this.$route.params.id == '5'){
-      return "rigaku.png"
-    }
-    else if(this.$route.params.id == '6'){
-      return "sagyo.png"
+  get src(): string {
+    if (this.$route.params.id == "1") {
+      return "アップデートです。";
+    } else if (this.$route.params.id == "2") {
+      return "kango.png";
+    } else if (this.$route.params.id == "3") {
+      return "housya.png";
+    } else if (this.$route.params.id == "4") {
+      return "kensa.png";
+    } else if (this.$route.params.id == "5") {
+      return "rigaku.png";
+    } else if (this.$route.params.id == "6") {
+      return "sagyo.png";
     }
     return "アップデートです。";
   }
@@ -129,7 +124,7 @@ export default class DefaultLayout extends Vue {
     } else if (this.$route.params.id == "6") {
       return "作業療法学専攻";
     }
-    return ''
+    return "";
   }
 }
 </script>

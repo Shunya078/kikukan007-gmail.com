@@ -93,15 +93,13 @@ export default class DefaultLayout extends Vue {
     }, 1000);
   }
 
-  get src(): string{
-    if(this.$route.params.id == '1'){
-      return "sizenzyo.png"
-    }
-    else if(this.$route.params.id == '2'){
-      return "ningen.png"
-    }
-    else if(this.$route.params.id == '3'){
-      return "computer.png"
+  get src(): string {
+    if (this.$route.params.id == "1") {
+      return "sizenzyo.png";
+    } else if (this.$route.params.id == "2") {
+      return "ningen.png";
+    } else if (this.$route.params.id == "3") {
+      return "computer.png";
     }
     return "アップデートです。";
   }
@@ -114,7 +112,7 @@ export default class DefaultLayout extends Vue {
     } else if (this.$route.params.id == "3") {
       return "コンピュータ科学学科";
     }
-    return ''
+    return "";
   }
 }
 </script>
