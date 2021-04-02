@@ -1,19 +1,33 @@
 <template>
   <v-layout column justify-center align-center>
     <loading-view v-show="loading" />
-      <div v-show="!loading">
+    <div v-show="!loading">
       <div class="card-wrapper">
-        <risyu-card :name="courseName" :imageSrc="src" v-on:load="load"></risyu-card>
+        <risyu-card
+          :name="courseName"
+          :imageSrc="src"
+          v-on:load="load"
+        ></risyu-card>
       </div>
       <div class="card-wrapper-sp">
-        <risyu-card :name="courseName" :imageSrc="src" v-on:load="load"></risyu-card>
+        <risyu-card
+          :name="courseName"
+          :imageSrc="src"
+          v-on:load="load"
+        ></risyu-card>
       </div>
       <div class="d-flex justify-center">
-      <v-btn class="back-button" outlined height="64" color="#2ca14f" @click="toTop()">
-        <div class="back-text">トップページへもどる</div>
-      </v-btn>
+        <v-btn
+          class="back-button"
+          outlined
+          height="64"
+          color="#2ca14f"
+          @click="toTop()"
+        >
+          <div class="back-text">トップページへもどる</div>
+        </v-btn>
       </div>
-      </div>
+    </div>
   </v-layout>
 </template>
 
@@ -34,7 +48,7 @@
   }
 }
 
-.back-button{
+.back-button {
   margin: 24px;
   @include mq-down() {
     font-size: 20px;
@@ -42,7 +56,7 @@
   }
 }
 
-.back-text{
+.back-text {
   font-size: 28px;
   font-weight: 700;
   letter-spacing: 0.1em;
@@ -79,28 +93,24 @@ export default class DefaultLayout extends Vue {
     }, 1000);
   }
 
-  get src(): string{
-    if(this.$route.params.id == '1'){
-      return "ri.png"
+  get src(): string {
+    if (this.$route.params.id == "1") {
+      return "ri.png";
+    } else if (this.$route.params.id == "2") {
+      return "ri.png";
+    } else if (this.$route.params.id == "3") {
+      return "ri.png";
     }
-    else if(this.$route.params.id == '2'){
-      return "ri.png"
-    }
-    else if(this.$route.params.id == '3'){
-      return "ri.png"
-    }
-    return 'アップデートです。'
+    return "アップデートです。";
   }
 
-    get courseName(): string{
-    if(this.$route.params.id == '1'){
-      return "生物環境学科"
-    }
-    else if(this.$route.params.id == '2'){
-      return "資源生物科学学科"
-    }
-    else if(this.$route.params.id == '3'){
-      return "応用生命科学学科"
+  get courseName(): string {
+    if (this.$route.params.id == "1") {
+      return "生物環境学科";
+    } else if (this.$route.params.id == "2") {
+      return "資源生物科学学科";
+    } else if (this.$route.params.id == "3") {
+      return "応用生命科学学科";
     }
   }
 }
