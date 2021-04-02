@@ -281,15 +281,15 @@ export default class DefaultLayout extends Vue {
       return
     }
     else if(title == this.items[1].title){
-      this.$router.push(`/igaku/${id}`);
+      this.$router.push(`/igaku/${id + 1}`);
       return
     }
     else if(title == this.items[2].title){
-      this.$router.push(`/kougaku/${id}`);
+      this.$router.push(`/kougaku/${id + 1}`);
       return
     }
     else if(title == this.items[3].title){
-      this.$router.push(`/nougaku/${id}`);
+      this.$router.push(`/nougaku/${id + 1}`);
       return
     }
     else if(title == this.items[4].title){
@@ -309,7 +309,7 @@ export default class DefaultLayout extends Vue {
       return
     }
     else if(title == this.items[8].title){
-      this.$router.push(`zyoho/${id}`);
+      this.$router.push(`zyoho/${id + 1}`);
       return
     }
     this.$router.push("/error");
