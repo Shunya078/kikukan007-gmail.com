@@ -1,28 +1,28 @@
 <template>
   <v-layout column justify-center align-center>
     <v-flex xs12 sm8 md6>
-    <loading-view v-show="loading" />
-    <div v-show="!loading">
-      <v-layout wrap>
-        <figure class="relative">
-        <img
-          src="~/assets/images/lizardsimg3.jpg"
-          class="headerImage"
-          v-on:load="load"
-        />
-        <img
-          src="~/assets/images/lizardsimg4.jpg"
-          class="headerImage-sp"
-          v-on:load="load"
-          />
-          <figcaption class="absolute-text">
-            <p class="jpn-text">履修登録確認表</p>
-            <br />
-            <p class="eng-text">Course Registration</p>
-          </figcaption>
-        </figure>
-      </v-layout>
-    </div>
+      <loading-view v-show="loading" />
+      <div v-show="!loading">
+        <v-layout wrap>
+          <figure class="relative">
+            <img
+              src="~/assets/images/lizardsimg3.jpg"
+              class="headerImage"
+              v-on:load="load"
+            />
+            <img
+              src="~/assets/images/lizardsimg4.jpg"
+              class="headerImage-sp"
+              v-on:load="load"
+            />
+            <figcaption class="absolute-text">
+              <p class="jpn-text">履修登録確認表</p>
+              <br />
+              <p class="eng-text">Course Registration</p>
+            </figcaption>
+          </figure>
+        </v-layout>
+      </div>
     </v-flex>
   </v-layout>
 </template>
@@ -100,7 +100,6 @@
   letter-spacing: 0.5em;
   text-align: right;
 }
-
 </style>
 
 <script lang="ts">

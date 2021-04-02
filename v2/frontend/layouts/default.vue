@@ -14,16 +14,13 @@
       </v-app-bar>
     </div>
     <div class="app-bar-wrapper-sp">
-      <v-app-bar
-        :clipped-left="clipped"
-        fixed
-        app
-        height="64"
-        color="#2ca14f"
-      >
+      <v-app-bar :clipped-left="clipped" fixed app height="64" color="#2ca14f">
         <v-toolbar-title v-text="titleSp" class="title-text" @click="toTop()" />
         <v-spacer />
-        <v-app-bar-nav-icon color="white" @click="drawer = true"></v-app-bar-nav-icon>
+        <v-app-bar-nav-icon
+          color="white"
+          @click="drawer = true"
+        ></v-app-bar-nav-icon>
       </v-app-bar>
     </div>
     <v-main>
@@ -202,7 +199,7 @@
   @include mq-up() {
     padding-top: 48px;
   }
-  @include mq-down(){
+  @include mq-down() {
     padding: 0;
   }
 }
