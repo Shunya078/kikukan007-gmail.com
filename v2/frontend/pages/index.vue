@@ -206,6 +206,7 @@
 <script lang="ts">
 import { Vue, Component } from "vue-property-decorator";
 import "vue-router";
+import firebase from "firebase";
 
 @Component({})
 export default class DefaultLayout extends Vue {

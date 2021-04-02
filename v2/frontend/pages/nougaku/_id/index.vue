@@ -81,13 +81,13 @@ export default class DefaultLayout extends Vue {
 
   get src(): string{
     if(this.$route.params.id == '1'){
-      return "ri.png"
+      return "seibutu.png"
     }
     else if(this.$route.params.id == '2'){
-      return "ri.png"
+      return "sisei.png"
     }
     else if(this.$route.params.id == '3'){
-      return "ri.png"
+      return "ousei.png"
     }
     return 'アップデートです。'
   }
@@ -102,6 +102,7 @@ export default class DefaultLayout extends Vue {
     else if(this.$route.params.id == '3'){
       return "応用生命科学学科"
     }
+    return ''
   }
 }
 </script>

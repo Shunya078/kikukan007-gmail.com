@@ -81,22 +81,22 @@ export default class DefaultLayout extends Vue {
 
   get src(): string{
     if(this.$route.params.id == '1'){
-      return "ri.png"
+      return "アップデートです。"
     }
     else if(this.$route.params.id == '2'){
-      return "ri.png"
+      return "kango.png"
     }
     else if(this.$route.params.id == '3'){
-      return "ri.png"
+      return "housya.png"
     }
     else if(this.$route.params.id == '4'){
-      return "ri.png"
+      return "kensa.png"
     }
     else if(this.$route.params.id == '5'){
-      return "ri.png"
+      return "rigaku.png"
     }
     else if(this.$route.params.id == '6'){
-      return "ri.png"
+      return "sagyo.png"
     }
     return 'アップデートです。'
   }
@@ -120,6 +120,7 @@ export default class DefaultLayout extends Vue {
     else if(this.$route.params.id == '6'){
       return "作業療法学専攻"
     }
+    return ''
   }
 }
 </script>

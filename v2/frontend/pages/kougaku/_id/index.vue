@@ -81,25 +81,25 @@ export default class DefaultLayout extends Vue {
 
   get src(): string{
     if(this.$route.params.id == '1'){
-      return "ri.png"
+      return "kasei.png"
     }
     else if(this.$route.params.id == '2'){
-      return "ri.png"
+      return "buturi.png"
     }
     else if(this.$route.params.id == '3'){
-      return "ri.png"
+      return "material.png"
     }
     else if(this.$route.params.id == '4'){
-      return "ri.png"
+      return "denzyo.png"
     }
     else if(this.$route.params.id == '5'){
-      return "ri.png"
+      return "kikou.png"
     }
     else if(this.$route.params.id == '6'){
-      return "ri.png"
+      return "energy.png"
     }
     else if(this.$route.params.id == '7'){
-      return "ri.png"
+      return "doboku.png"
     }
     return 'アップデートです。'
   }
@@ -126,6 +126,7 @@ export default class DefaultLayout extends Vue {
     else if(this.$route.params.id == '7'){
       return "環境土木・建築学科"
     }
+    return ''
   }
 }
 </script>
