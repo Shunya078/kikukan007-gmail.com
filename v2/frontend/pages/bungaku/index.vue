@@ -1,19 +1,33 @@
 <template>
   <v-layout column justify-center align-center>
     <loading-view v-show="loading" />
-      <div v-show="!loading">
+    <div v-show="!loading">
       <div class="card-wrapper">
-        <risyu-card :name="courseName" :imageSrc="src" v-on:load="load"></risyu-card>
+        <risyu-card
+          :name="courseName"
+          :imageSrc="src"
+          v-on:load="load"
+        ></risyu-card>
       </div>
       <div class="card-wrapper-sp">
-        <risyu-card :name="courseName" :imageSrc="src" v-on:load="load"></risyu-card>
+        <risyu-card
+          :name="courseName"
+          :imageSrc="src"
+          v-on:load="load"
+        ></risyu-card>
       </div>
       <div class="d-flex justify-center">
-      <v-btn class="back-button" outlined height="64" color="#2ca14f" @click="toTop()">
-        <div class="back-text">トップページへもどる</div>
-      </v-btn>
+        <v-btn
+          class="back-button"
+          outlined
+          height="64"
+          color="#2ca14f"
+          @click="toTop()"
+        >
+          <div class="back-text">トップページへもどる</div>
+        </v-btn>
       </div>
-      </div>
+    </div>
   </v-layout>
 </template>
 
@@ -34,7 +48,7 @@
   }
 }
 
-.back-button{
+.back-button {
   margin: 24px;
   @include mq-down() {
     font-size: 20px;
@@ -42,7 +56,7 @@
   }
 }
 
-.back-text{
+.back-text {
   font-size: 28px;
   font-weight: 700;
   letter-spacing: 0.1em;
@@ -62,8 +76,8 @@ export default class DefaultLayout extends Vue {
   loading: boolean = false;
   visible: boolean = false;
 
-  courseName: string = "文学部"
-  src: string = "bun.png"
+  courseName: string = "文学部";
+  src: string = "bun.png";
 
   toTop() {
     this.$router.push("/");

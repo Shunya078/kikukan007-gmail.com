@@ -3,10 +3,7 @@
     <div class="card-wrapper">
       <v-card class="card">
         <div class="name-text" v-text="name" />
-          <img
-              :src="image"
-              class="image-content"
-            />
+        <img :src="image" class="image-content" />
       </v-card>
     </div>
   </div>
