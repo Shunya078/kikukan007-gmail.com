@@ -8,7 +8,6 @@ const { API_URL } = envSet; // process.env
 console.log("environmments", API_URL);
 
 export default {
-
   typescript: {
     typeCheck: {
       async: false,
@@ -71,7 +70,7 @@ export default {
    ** https://github.com/nuxt-community/vuetify-module
    */
   components: true,
-  
+
   router: {},
   vuetify: {
     customVariables: ["~/assets/scss/_vuetify-variables.scss"],

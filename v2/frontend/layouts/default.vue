@@ -17,7 +17,8 @@
       height="72"
     >
       <span class="footer-text"
-        >&copy; {{ new Date().getFullYear() }}. All rights reserved. Mady by Shunya078.</span
+        >&copy; {{ new Date().getFullYear() }}. All rights reserved. Mady by
+        Shunya078.</span
       >
     </v-footer>
   </v-app>
@@ -43,16 +44,16 @@
 </style>
 
 <script lang="ts">
-import { Vue, Component } from 'vue-property-decorator'
+import { Vue, Component } from "vue-property-decorator";
 import "vue-router";
 
 @Component({})
 export default class DefaultLayout extends Vue {
-  clipped: boolean = false
-  drawer: boolean = false
-  fixed: boolean = false
-  miniVariant: boolean = false
-  title: string =  "名大男子ラクロス部：履修登録案内"
+  clipped: boolean = false;
+  drawer: boolean = false;
+  fixed: boolean = false;
+  miniVariant: boolean = false;
+  title: string = "名大男子ラクロス部：履修登録案内";
 
   toTop() {
     this.$router.push("/");
