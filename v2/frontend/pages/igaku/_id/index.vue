@@ -95,7 +95,7 @@ export default class DefaultLayout extends Vue {
 
   get src(): string {
     if (this.$route.params.id == "1") {
-      return "アップデートです。";
+      return "i.png";
     } else if (this.$route.params.id == "2") {
       return "kango.png";
     } else if (this.$route.params.id == "3") {
