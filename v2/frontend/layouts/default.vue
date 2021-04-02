@@ -7,7 +7,7 @@
         app
         flat
         height="96"
-        color="#00C853"
+        color="#2ca14f"
       >
         <v-toolbar-title v-text="title" class="title-text" @click="toTop()" />
         <v-spacer />
@@ -18,13 +18,12 @@
         :clipped-left="clipped"
         fixed
         app
-        flat
         height="64"
-        color="#00C853"
+        color="#2ca14f"
       >
         <v-toolbar-title v-text="titleSp" class="title-text" @click="toTop()" />
         <v-spacer />
-        <v-app-bar-nav-icon @click="drawer = true"></v-app-bar-nav-icon>
+        <v-app-bar-nav-icon color="white" @click="drawer = true"></v-app-bar-nav-icon>
       </v-app-bar>
     </div>
     <v-main>
@@ -154,6 +153,7 @@
   font-weight: 700;
   letter-spacing: 0.1em;
   padding-left: 24px;
+  color: $gray;
   @include mq-down() {
     font-size: 20px;
     letter-spacing: 0.02em;
@@ -201,6 +201,9 @@
   width: 100%;
   @include mq-up() {
     padding-top: 48px;
+  }
+  @include mq-down(){
+    padding: 0;
   }
 }
 </style>
