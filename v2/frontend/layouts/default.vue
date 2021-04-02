@@ -153,7 +153,6 @@
   color: $gray;
   @include mq-down() {
     font-size: 20px;
-    letter-spacing: 0.02em;
   }
 }
 .footer-text {
